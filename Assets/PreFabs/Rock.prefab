@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3520816173250571885}
   - component: {fileID: 7183697239511810068}
   - component: {fileID: 3463389675283145631}
+  - component: {fileID: 2061680451928091647}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5549946944991888884}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.52, y: -0, z: 1.2}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -105,3 +106,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28295052, y: 0.15019415, z: 0.24587235}
   m_Center: {x: 0.0061820745, y: 0.011773393, z: 0.0015541464}
+--- !u!114 &2061680451928091647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549946944991888884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136d03ecc6720054abaea9879edd1839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

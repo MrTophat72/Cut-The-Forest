@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class SpawnManager : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> Obstacles;
     [SerializeField] List<GameObject> Units;
+    [SerializeField] GameObject ResourceText;
     private int choice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +18,21 @@ public class SpawnManager : MonoBehaviour
         {
             Debug.Log("New Game!");
             StartNew(0);
+            SpawnOneGold();
+            GameObject.Find("MainHub").GetComponent<MainHub>().StartUpBase(0,0,0);
         } else
         {
             Debug.Log("Load Game!");
             LoadGame();
+            GameObject.Find("MainHub").GetComponent<MainHub>().
+                StartUpBase(MainManager.Instance.Resources[0], MainManager.Instance.Resources[1],
+                MainManager.Instance.Resources[2]);
         }
     }
 
 
     private int StartNew(int min)
     {
-        Debug.Log("Starting a new game!");
         if (min < 200)
         {
             float x = Random.Range(-5f, 5f);
@@ -44,6 +51,20 @@ public class SpawnManager : MonoBehaviour
         return 1;
     }
 
+    private void SpawnOneGold()
+    {
+        float x = Random.Range(-5f, 5f);
+        float z = Random.Range(-5f, 5f);
+        if (Mathf.Abs(x) < 4 && Mathf.Abs(z) < 4)
+        {
+
+            SpawnOneGold();
+        }
+        else
+        {
+            Instantiate(Obstacles[2], new Vector3(x,0,z), transform.rotation);
+        }
+    }
     private void LoadGame()
     {
         List<int> type = MainManager.Instance.type;
@@ -55,19 +76,19 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // 5% chance for gold 
-    // 20 % chance for Stone
-    // 75 % chance for Tree
+    // 0.1% chance for gold 
+    // 10 % chance for Stone
+    // 90 % chance for Tree
     private void SpawnObstacle(Vector3 Location)
     {
 
-        int chance = Random.Range(0, 100);
-        if(chance < 76)
+        int chance = Random.Range(0, 1000);
+        if(chance < 900)
         {
             choice = 0;
             
             
-        } else if (chance < 96){
+        } else if (chance < 999){
             choice = 1;
            // MainManager.Instance.Locations.Add(new float[3] { 1f, Location.x, Location.z });
         } else
@@ -81,4 +102,6 @@ public class SpawnManager : MonoBehaviour
         Instantiate(Obstacles[choice], Location, transform.rotation);
 
     }
+
+
 }

@@ -15,6 +15,7 @@ public class MainManager : MonoBehaviour
     public List<float> xLocation;
     public List<float> zLocation;
     public List<int> type;
+
     private void Awake()
     {
         if (Instance != null)
@@ -31,6 +32,9 @@ public class MainManager : MonoBehaviour
     public void StartNew()
     {
         Resources = new int[3] {0,0,0};
+        xLocation = new List<float>();
+        zLocation = new List<float>();
+        type = new List<int>();
     }
 
     [System.Serializable]
