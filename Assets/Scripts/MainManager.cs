@@ -11,7 +11,10 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance {  get; private set; }
 
     public int[] Resources = new int[3];
-    public List<float[]> Locations;
+    //public float[] obstacles = new float[3];
+    public List<float> xLocation;
+    public List<float> zLocation;
+    public List<int> type;
     private void Awake()
     {
         if (Instance != null)
@@ -22,24 +25,32 @@ public class MainManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        Locations = new List<float[]>();
+        //Locations = new List<float[]>();
+    }
+
+    public void StartNew()
+    {
+        Resources = new int[3] {0,0,0};
     }
 
     [System.Serializable]
     class SaveData
     {
-        public List<float[]> Locations;
+        public List<float> xLocation;
+        public List<float> zLocation;
+        public List<int> type;
         public int[] Resources = new int[3];
     }
 
     public void SaveFiles()
     {
         SaveData data = new SaveData();
-        data.Locations = Locations;
+        data.xLocation = xLocation;
+        data.zLocation = zLocation;
+        data.type = type;
         data.Resources = Resources;
 
         string json = JsonUtility.ToJson(data);
-
         File.WriteAllText(Application.persistentDataPath + "/SaveFile.json", json);
        
     }
@@ -51,7 +62,9 @@ public class MainManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-            Locations = data.Locations;
+            xLocation = data.xLocation;
+            zLocation = data.zLocation;
+            type = data.type;
             Resources = data.Resources;
         }
     }

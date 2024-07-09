@@ -4,15 +4,81 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+
+    [SerializeField] List<GameObject> Obstacles;
+    [SerializeField] List<GameObject> Units;
+    private int choice;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (MainManager.Instance.xLocation.Count<1 || MainManager.Instance == null)
+        {
+            Debug.Log("New Game!");
+            StartNew(0);
+        } else
+        {
+            Debug.Log("Load Game!");
+            LoadGame();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private int StartNew(int min)
     {
-        
+        Debug.Log("Starting a new game!");
+        if (min < 200)
+        {
+            float x = Random.Range(-5f, 5f);
+            float z = Random.Range(-5f, 5f);
+            if (Mathf.Abs(x) < 1.2 && Mathf.Abs(z) < 1.2)
+            {
+                
+                return StartNew(min);
+            }
+            else
+            {
+                SpawnObstacle(new Vector3(x, 0f, z));
+                return StartNew(min + 1);
+            }
+        }
+        return 1;
+    }
+
+    private void LoadGame()
+    {
+        List<int> type = MainManager.Instance.type;
+        List<float> xLoc = MainManager.Instance.xLocation;
+        List<float> zLoc = MainManager.Instance.zLocation;
+        for (int i = 0; i<type.Count;i++)
+        {
+            Instantiate(Obstacles[type[i]], new Vector3(xLoc[i], 0f, zLoc[i]), transform.rotation); 
+        }
+    }
+
+    // 5% chance for gold 
+    // 20 % chance for Stone
+    // 75 % chance for Tree
+    private void SpawnObstacle(Vector3 Location)
+    {
+
+        int chance = Random.Range(0, 100);
+        if(chance < 76)
+        {
+            choice = 0;
+            
+            
+        } else if (chance < 96){
+            choice = 1;
+           // MainManager.Instance.Locations.Add(new float[3] { 1f, Location.x, Location.z });
+        } else
+        {
+            choice = 2;
+           // MainManager.Instance.Locations.Add(new float[3] { 2f, Location.x, Location.z });
+        }
+        MainManager.Instance.xLocation.Add(Location.x);
+        MainManager.Instance.zLocation.Add(Location.z);
+        MainManager.Instance.type.Add(choice);
+        Instantiate(Obstacles[choice], Location, transform.rotation);
+
     }
 }
