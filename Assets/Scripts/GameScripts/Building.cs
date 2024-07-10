@@ -46,7 +46,7 @@ public abstract class Building : MonoBehaviour
         return GetItem(StringtoInt(resourceId), requestAmount);
     }
 
-    private int StringtoInt(string str)
+    public int StringtoInt(string str)
     {
         
         if (str.ToLower().Equals("wood"))
@@ -60,7 +60,7 @@ public abstract class Building : MonoBehaviour
             return 2;
         }
 
-        Debug.LogWarning("ERROR: There is no such String!");
+        //Debug.LogWarning("ERROR: There is no such String!");
         return -1;
     }
 
@@ -77,6 +77,6 @@ public abstract class Building : MonoBehaviour
 
     public void GetContent()
     {
-        //m_Inventory;
+        
     }
 }

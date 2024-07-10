@@ -101,7 +101,7 @@ public class UserControll : MonoBehaviour
         {
             Marker.SetActive(true);
             Marker.transform.SetParent(m_Selected.transform, false);
-            Marker.transform.localPosition = Vector3.zero;
+            Marker.transform.localPosition = Vector3.zero+Vector3.up*1.5f;
         }
     }
     public void GoToMainMenu()

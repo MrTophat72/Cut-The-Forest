@@ -6,36 +6,50 @@ public class LumberJack : Unit
 {
     // Start is called before the first frame update
     public int MaxAmountTransported = 1;
-
-    private Building m_CurrentTransportTarget;
+    private int resourceType;
+    private int tempType;
+    private Building m_CurrentMineTarget;
     private Building.InventoryEntry m_Transporting = new Building.InventoryEntry();
 
+    private void Start()
+    {
+        resourceType = 0;
+    }
     // We override the GoTo function to remove the current transport target, as any go to order will cancel the transport
     public override void GoTo(Vector3 position)
     {
         base.GoTo(position);
-        m_CurrentTransportTarget = null;
+        m_CurrentMineTarget = null;
     }
 
     protected override void BuildingInRange()
     {
+
+        tempType = m_Target.StringtoInt(m_Target.GetName());
+        if (tempType >= -1)
+        {
+            resourceType = tempType;
+        }
         if (m_Target == MainHub.Instance)
         {
+
             //we arrive at the base, unload!
-            if (m_Transporting.Resources[0] > 0)
-                m_Target.AddItem(0, 1);
+            if (m_Transporting.Resources[resourceType] > 0)
+            {
+                m_Target.AddItem(resourceType, 1);
+            }
 
             //we go back to the building we came from
-            GoTo(m_CurrentTransportTarget);
-            m_Transporting.Resources[1] = 0;
+            GoTo(m_CurrentMineTarget);
+            m_Transporting.Resources[resourceType] = 0;
         }
         else
         {
-            if (m_Target.Inventory.Resources[1] > 0)
+            if (m_Target.Inventory.Resources[resourceType] > MaxAmountTransported)
             {
-                m_Transporting.Resources[1] = m_Target.Inventory.Resources[1];
-                m_Transporting.Resources[1] = m_Target.GetItem(m_Transporting.Resources[1], MaxAmountTransported);
-                m_CurrentTransportTarget = m_Target;
+                m_Transporting.Resources[resourceType] = m_Target.Inventory.Resources[resourceType];
+                m_Transporting.Resources[resourceType] = m_Target.GetItem(m_Transporting.Resources[resourceType], MaxAmountTransported);
+                m_CurrentMineTarget = m_Target;
                 GoTo(MainHub.Instance);
             }
         }

@@ -7,19 +7,22 @@ public class SpawnManager : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> Obstacles;
-    [SerializeField] List<GameObject> Units;
+    [SerializeField] List<GameObject> Workers;
     [SerializeField] GameObject ResourceText;
     private int choice;
-
+    private bool testing;
     // Start is called before the first frame update
     void Start()
     {
-        if (MainManager.Instance.xLocation.Count<1 || MainManager.Instance == null)
+        if (GameObject.Find("MainManager") != null) {
+            testing = false;
+        if (MainManager.Instance.xLocation.Count<1)
         {
             Debug.Log("New Game!");
             StartNew(0);
             SpawnOneGold();
             GameObject.Find("MainHub").GetComponent<MainHub>().StartUpBase(0,0,0);
+            SpawnOneWorker(0);
         } else
         {
             Debug.Log("Load Game!");
@@ -27,6 +30,15 @@ public class SpawnManager : MonoBehaviour
             GameObject.Find("MainHub").GetComponent<MainHub>().
                 StartUpBase(MainManager.Instance.Resources[0], MainManager.Instance.Resources[1],
                 MainManager.Instance.Resources[2]);
+        }
+        } else
+        {
+            testing = false;
+            Debug.Log("New Game!");
+            StartNew(0);
+            SpawnOneGold();
+            GameObject.Find("MainHub").GetComponent<MainHub>().StartUpBase(0, 0, 0);
+            SpawnOneWorker(0);
         }
     }
 
@@ -37,7 +49,7 @@ public class SpawnManager : MonoBehaviour
         {
             float x = Random.Range(-5f, 5f);
             float z = Random.Range(-5f, 5f);
-            if (Mathf.Abs(x) < 1.2 && Mathf.Abs(z) < 1.2)
+            if (Mathf.Abs(x) < 1.5 && Mathf.Abs(z) < 1.5)
             {
                 
                 return StartNew(min);
@@ -97,12 +109,19 @@ public class SpawnManager : MonoBehaviour
             choice = 2;
            // MainManager.Instance.Locations.Add(new float[3] { 2f, Location.x, Location.z });
         }
-        MainManager.Instance.xLocation.Add(Location.x);
-        MainManager.Instance.zLocation.Add(Location.z);
-        MainManager.Instance.type.Add(choice);
+        if (testing = false)
+        {
+            MainManager.Instance.xLocation.Add(Location.x);
+            MainManager.Instance.zLocation.Add(Location.z);
+            MainManager.Instance.type.Add(choice);
+        }
         Instantiate(Obstacles[choice], Location, transform.rotation);
 
     }
 
+    public void SpawnOneWorker(int type)
+    {
+        Instantiate(Workers[type], MainHub.Instance.transform.position + new Vector3(1, 0, 0), transform.rotation);
+    }
 
 }

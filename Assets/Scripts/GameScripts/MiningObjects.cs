@@ -7,14 +7,22 @@ public class MiningObjects : Building
 {
 
     [SerializeField] int startAmount;
-    [SerializeField] int Resource;
+    public string Resource { get; [SerializeField] set; };
 
-
+    private void Start()
+    {
+        Resource = gameObject.name;
+    }
     private void LateUpdate()
     {
         if (startAmount <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    public override string GetData()
+    {
+        return Resource;
     }
 }
