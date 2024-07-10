@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class MiningObjects : MonoBehaviour
+public class MiningObjects : Building
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] int startAmount;
+    [SerializeField] int Resource;
+
+
+    private void LateUpdate()
     {
-        
+        if (startAmount <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

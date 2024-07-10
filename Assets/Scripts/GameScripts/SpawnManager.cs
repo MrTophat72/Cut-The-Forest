@@ -85,6 +85,7 @@ public class SpawnManager : MonoBehaviour
         int chance = Random.Range(0, 1000);
         if(chance < 900)
         {
+            Debug.Log("Spawn a Tree");
             choice = 0;
             
             
