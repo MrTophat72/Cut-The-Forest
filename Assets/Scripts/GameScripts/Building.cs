@@ -20,42 +20,49 @@ public abstract class Building : MonoBehaviour
     protected InventoryEntry m_Inventory = new InventoryEntry();
     public InventoryEntry Inventory => m_Inventory;
 
-    protected int m_CurrentAmount = 0;
+   // protected int m_CurrentAmount = 0;
 
     public int AddItem(int resourceId, int amount) 
     {
-        int maxInventorySpace = InventorySpace == -1 ? Int32.MaxValue : InventorySpace;
-        if (m_CurrentAmount == maxInventorySpace)
-            return amount;
-
-        int addedAmount = Mathf.Min(maxInventorySpace - m_CurrentAmount, amount);
-        m_Inventory.Resources[resourceId] += addedAmount;
-        m_CurrentAmount += addedAmount;
-        return amount - addedAmount;
+        m_Inventory.Resources[resourceId] += amount;
+        return m_Inventory.Resources[resourceId];
     }
 
-    public int GetItem(int resourceId, int requestAmount)
+    public int AddItem(string resourceId, int amount)
+    {
+        return AddItem(StringtoInt(resourceId),amount);
+    }
+        public int GetItem(int resourceId, int requestAmount)
+    {
+        if(requestAmount > m_Inventory.Resources[resourceId])
+        {
+            return -1;
+        }
+            m_Inventory.Resources[resourceId] -= requestAmount;
+            return m_Inventory.Resources[resourceId];
+    }
+    public int GetItem(string resourceId, int requestAmount)
+    {
+        return GetItem(StringtoInt(resourceId), requestAmount);
+    }
+
+    private int StringtoInt(string str)
     {
         
+        if (str.ToLower().Equals("wood"))
+        {
+            return 0;
+        } else if (str.ToLower().Equals("rock"))
+        {
+            return 1;
+        } else if (str.ToLower().Equals("gold"))
+        {
+            return 2;
+        }
 
-
-            int amount = Mathf.Min(requestAmount, m_Inventory.Resources[resourceId]);
-            m_Inventory.Resources[resourceId] -= amount;
-
-  //          if (m_Inventory[found].Count == 0)
-  //          {//no more of that resources, so we remove it
-  //              m_Inventory.RemoveAt(found);
-  //          }
-
-            m_CurrentAmount -= amount;
-
-            return amount;
-
+        Debug.LogWarning("ERROR: There is no such String!");
+        return -1;
     }
-
-
-
-
 
 
     public virtual string GetName()

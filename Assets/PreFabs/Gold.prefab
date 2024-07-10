@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5532962259508272808}
   - component: {fileID: 2105544668564955621}
   - component: {fileID: 5644227696022557220}
+  - component: {fileID: 4179829389682462553}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -144,3 +145,19 @@ MonoBehaviour:
   InventorySpace: -1
   startAmount: 5
   Resource: 2
+--- !u!208 &4179829389682462553
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067877282519775705}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.527, y: 0.563, z: 0.47700003}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.039, y: 0.55700004, z: 0.011000001}
+  m_TimeToStationary: 0.5
