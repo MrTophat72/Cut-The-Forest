@@ -14,6 +14,13 @@ public class MainHub : Building
     [SerializeField] TextMeshProUGUI woodText;
     [SerializeField] TextMeshProUGUI rockText;
     [SerializeField] TextMeshProUGUI goldText;
+
+    public static MainHub Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void StartUpBase(int woodResource, int rockResource, int goldResource)
     {
         m_Wood = AddItem(0, woodResource);
