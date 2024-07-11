@@ -1055,6 +1055,7 @@ GameObject:
   - component: {fileID: 5561709872753583785}
   - component: {fileID: 5539732762510473205}
   - component: {fileID: 7484979699398565656}
+  - component: {fileID: 4377067074152780567}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Untagged
@@ -1171,6 +1172,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4377067074152780567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486301868514606278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d80c0c6d1e6b1846b96e920147707a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  m_Target: {fileID: 0}
+  MaxAmountTransported: 1
+  m_CurrentMineTarget: {fileID: 0}
+  m_Transporting:
+    Resources: 000000000000000000000000
+  MiningSpeed:
+  - 10
+  - 2
+  - 30
 --- !u!1 &7505148439683079462
 GameObject:
   m_ObjectHideFlags: 0

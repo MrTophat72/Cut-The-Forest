@@ -8,6 +8,7 @@ public abstract class Unit : MonoBehaviour
     public float speed = 1f;
     protected NavMeshAgent m_Agent;
     [SerializeField] protected Building m_Target;
+    protected bool doNotMove;
     // Start is called before the first frame update
     protected void Awake()
     {
@@ -15,6 +16,7 @@ public abstract class Unit : MonoBehaviour
         m_Agent.speed = speed;
         m_Agent.acceleration = 999;
         m_Agent.angularSpeed = 999;
+        doNotMove = false;
     }
 
     // Update is called once per frame
@@ -27,11 +29,18 @@ public abstract class Unit : MonoBehaviour
             if (distance < 0.7f)
             {
                 m_Agent.isStopped = true;
-                BuildingInRange();
+                if (!doNotMove)
+                {
+                    BuildingInRange();
+                }
+              
             } else if(distance < 1f && m_Target == MainHub.Instance)
             {
                 m_Agent.isStopped = true;
-                BuildingInRange();
+                if (!doNotMove)
+                {
+                    BuildingInRange();
+                }
             }
 
 
@@ -41,6 +50,7 @@ public abstract class Unit : MonoBehaviour
 
     public virtual void GoTo(Building target)
     {
+        StopAllCoroutines();
         m_Target = target;
         if (m_Target != null)
         {
@@ -52,6 +62,7 @@ public abstract class Unit : MonoBehaviour
     public virtual void GoTo(Vector3 position)
     {
         //we don't have a target anymore if we order to go to a random point.
+        StopAllCoroutines();
         m_Target = null;
         m_Agent.SetDestination(position);
         m_Agent.isStopped = false;
@@ -60,6 +71,7 @@ public abstract class Unit : MonoBehaviour
 
     
     protected abstract void BuildingInRange();
+
 
     public virtual string GetName()
     {
@@ -75,4 +87,6 @@ public abstract class Unit : MonoBehaviour
     {
 
     }
+
+
 }

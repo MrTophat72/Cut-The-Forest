@@ -61,7 +61,7 @@ public abstract class Building : MonoBehaviour
         {
             return 2;
         }
-        else if (str.ToLower().Equals("gold"))
+        else if (str.ToLower().Equals("mainhub"))
         {
             return -1;
         } else { 

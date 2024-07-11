@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a033bfd546078a4a97055cafedefd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 1
   InventorySpace: -1
   startAmount: 10
   Resource: 

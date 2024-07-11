@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class LumberJack : ResourceGathering
+public class Miner : ResourceGathering
 {
     [SerializeField] List<float> MiningSpeed;
 
@@ -13,16 +12,14 @@ public class LumberJack : ResourceGathering
         if (MiningSpeed.Count > resourceType)
         {
             return MiningSpeed[resourceType];
-        } else
+        }
+        else
         {
             Debug.LogWarning("The list doesn't contain this item");
             return 0;
         }
- 
-        
+
+
 
     }
-
-
-
 }

@@ -843,8 +843,13 @@ MonoBehaviour:
   speed: 1
   m_Target: {fileID: 0}
   MaxAmountTransported: 1
-  MiningSpeed: 050000000a00000000000000
-  timer: 0
+  m_CurrentMineTarget: {fileID: 0}
+  m_Transporting:
+    Resources: 000000000000000000000000
+  MiningSpeed:
+  - 1
+  - 10
+  - 600
 --- !u!1 &4084194835803733618
 GameObject:
   m_ObjectHideFlags: 0
