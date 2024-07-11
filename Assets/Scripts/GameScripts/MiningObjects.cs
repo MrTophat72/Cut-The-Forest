@@ -7,16 +7,23 @@ public class MiningObjects : Building
 {
 
     [SerializeField] int startAmount;
-    public string Resource { get; [SerializeField] set; };
+    public string Resource;
+    [SerializeField] int currentResource;
+    [SerializeField] InventoryEntry testingInventory;
 
     private void Start()
     {
-        Resource = gameObject.name;
+        isAlive = true;
+        Resource = gameObject.name.Split("(")[0].ToLower();
+        currentResource = StringtoInt(Resource);
+        AddItem(currentResource, startAmount);
+        testingInventory = GetContent();
     }
-    private void LateUpdate()
+    private void Update()
     {
-        if (startAmount <= 0)
+        if (m_Inventory.Resources[currentResource] <= 0)
         {
+            isAlive = false;
             Destroy(gameObject);
         }
     }

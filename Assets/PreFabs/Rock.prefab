@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6964372118496140103}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,9 @@ MonoBehaviour:
   InventorySpace: -1
   startAmount: 20
   Resource: 1
+  currentResource: 0
+  testingInventory:
+    Resources: 000000000000000000000000
 --- !u!208 &6964372118496140103
 NavMeshObstacle:
   m_ObjectHideFlags: 0

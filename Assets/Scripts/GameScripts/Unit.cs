@@ -7,7 +7,7 @@ public abstract class Unit : MonoBehaviour
 {
     public float speed = 1f;
     protected NavMeshAgent m_Agent;
-    protected Building m_Target;
+    [SerializeField] protected Building m_Target;
     // Start is called before the first frame update
     protected void Awake()
     {
@@ -24,7 +24,11 @@ public abstract class Unit : MonoBehaviour
         if (m_Target != null)
         {
             float distance = Vector3.Distance(m_Target.transform.position,transform.position);
-            if (distance < 0.2f)
+            if (distance < 0.7f)
+            {
+                m_Agent.isStopped = true;
+                BuildingInRange();
+            } else if(distance < 1f && m_Target == MainHub.Instance)
             {
                 m_Agent.isStopped = true;
                 BuildingInRange();

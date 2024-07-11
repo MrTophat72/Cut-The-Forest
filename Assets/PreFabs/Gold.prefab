@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4179829389682462553}
   m_Layer: 0
   m_Name: Gold
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,9 @@ MonoBehaviour:
   InventorySpace: -1
   startAmount: 5
   Resource: 2
+  currentResource: 0
+  testingInventory:
+    Resources: 000000000000000000000000
 --- !u!208 &4179829389682462553
 NavMeshObstacle:
   m_ObjectHideFlags: 0

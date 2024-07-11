@@ -10,7 +10,7 @@ public class MainHub : Building
     [SerializeField] int m_Wood;
     [SerializeField] int m_Rock;
     [SerializeField] int m_Gold;
-   
+    [SerializeField] InventoryEntry currentInventory;
     [SerializeField] TextMeshProUGUI woodText;
     [SerializeField] TextMeshProUGUI rockText;
     [SerializeField] TextMeshProUGUI goldText;
@@ -20,6 +20,7 @@ public class MainHub : Building
     private void Awake()
     {
         Instance = this;
+        currentInventory = Instance.m_Inventory;
     }
     public void StartUpBase(int woodResource, int rockResource, int goldResource)
     {
@@ -30,9 +31,10 @@ public class MainHub : Building
     // Update is called once per frame
     void Update()
     {
-        woodText.text = "Wood: " + m_Inventory.Resources[0];
-        rockText.text = "Rock: " + m_Inventory.Resources[1];
-        goldText.text = "Gold: " + m_Inventory.Resources[2];
+
+        woodText.text = "Wood: " + currentInventory.Resources[0];
+        rockText.text = "Rock: " + currentInventory.Resources[1];
+        goldText.text = "Gold: " + currentInventory.Resources[2];
     }
 
     

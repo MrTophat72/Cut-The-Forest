@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736306309072059435, guid: 32bc93ce997ae5d4daeacb9ce422fb6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8736306309072059435, guid: 32bc93ce997ae5d4daeacb9ce422fb6b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736306309072059436, guid: 32bc93ce997ae5d4daeacb9ce422fb6b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8736306310617802680, guid: 32bc93ce997ae5d4daeacb9ce422fb6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1072,7 +1072,6 @@ GameObject:
   - component: {fileID: 1309562037}
   - component: {fileID: 1309562036}
   - component: {fileID: 1309562035}
-  - component: {fileID: 1309562038}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1154,18 +1153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
---- !u!114 &1309562038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309562034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03eb27719bedb414dad354135af84d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1335130519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,10 +1272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f212a87505f84647900c64575b98daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 1
   InventorySpace: -1
   m_Wood: 0
   m_Rock: 0
   m_Gold: 0
+  currentInventory:
+    Resources: 000000000000000000000000
   woodText: {fileID: 617635348}
   rockText: {fileID: 1090236057}
   goldText: {fileID: 1885791090}

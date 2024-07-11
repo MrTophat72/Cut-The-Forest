@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         }
         } else
         {
-            testing = false;
+            testing = true;
             Debug.Log("New Game!");
             StartNew(0);
             SpawnOneGold();
@@ -109,7 +109,7 @@ public class SpawnManager : MonoBehaviour
             choice = 2;
            // MainManager.Instance.Locations.Add(new float[3] { 2f, Location.x, Location.z });
         }
-        if (testing = false)
+        if (testing == false)
         {
             MainManager.Instance.xLocation.Add(Location.x);
             MainManager.Instance.zLocation.Add(Location.z);

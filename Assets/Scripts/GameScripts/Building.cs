@@ -12,7 +12,7 @@ public abstract class Building : MonoBehaviour
     {
         public int[] Resources = new int[3];
     }
-
+    public bool isAlive = true;
 
     [Tooltip("-1 is infinite")]
     public int InventorySpace = -1;
@@ -48,20 +48,28 @@ public abstract class Building : MonoBehaviour
 
     public int StringtoInt(string str)
     {
-        
-        if (str.ToLower().Equals("wood"))
+
+        if (str.ToLower().Equals("wood") || str.ToLower().Equals("tree"))
         {
             return 0;
-        } else if (str.ToLower().Equals("rock"))
+        }
+        else if (str.ToLower().Equals("rock"))
         {
             return 1;
-        } else if (str.ToLower().Equals("gold"))
+        }
+        else if (str.ToLower().Equals("gold"))
         {
             return 2;
         }
+        else if (str.ToLower().Equals("gold"))
+        {
+            return -1;
+        } else { 
 
-        //Debug.LogWarning("ERROR: There is no such String!");
-        return -1;
+            Debug.LogWarning("ERROR: There is no such String!"+str);
+            return -2;
+        }
+
     }
 
 
@@ -75,8 +83,8 @@ public abstract class Building : MonoBehaviour
         return "";
     }
 
-    public void GetContent()
+    public InventoryEntry GetContent()
     {
-        
+        return m_Inventory;
     }
 }
